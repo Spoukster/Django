@@ -1,4 +1,5 @@
 {% load static %}
+{% load tz %}
 
 <!DOCTYPE html>
 <html>
@@ -32,6 +33,7 @@
         <footer class="page__footer">
             <span class="page__copyright">
                 © GeekBrains
+                {% now 'SHORT_DATETIME_FORMAT' %}
             </span>
         </footer>
     </div>
