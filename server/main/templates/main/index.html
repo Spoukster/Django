@@ -20,7 +20,9 @@ Home
     </span>
     <img src="" alt="" class="branding__background">
     <span class="branding__snippet">
-        Главная страница Интернет-витрины
+        {% filter upper %}
+            Главная страница Интернет-витрины
+        {% endfilter %}
     </span>
 </div>
 {% endblock %}
