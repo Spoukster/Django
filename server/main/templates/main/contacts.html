@@ -1,0 +1,26 @@
+{% extends 'server/master.html' %}
+
+{% load static %}
+
+{% block page_title%}
+Contacts
+{% endblock %}
+
+{% block page_static%}
+<link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+{% endblock %}
+
+{% block page_content %}
+<h1 class="page__title">
+    Контакты
+</h1>
+<ul class="contacts-list">
+    {% for item in contacts%}
+    <li>
+        <span>
+            {{ item }}
+        </span>
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}

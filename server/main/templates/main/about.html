@@ -1,0 +1,23 @@
+{% extends 'server/master.html' %}
+
+{% load static %}
+
+{% block page_title%}
+About
+{% endblock %}
+
+{% block page_static%}
+<link rel="stylesheet" href="{% static 'main/css/index.css' %}">
+{% endblock %}
+
+{% block page_content %}
+<h1 class="page__title">
+    О проекте
+</h1>
+<div class="branding">
+    <img src="" alt="" class="branding__background">
+    <span class="branding__snippet">
+        {{ about_text }}
+    </span>
+</div>
+{% endblock %}
