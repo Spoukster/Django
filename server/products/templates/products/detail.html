@@ -1,0 +1,22 @@
+{% extends 'server/master.html' %}
+
+{% load static %}
+
+{% block page_static %}
+<link rel="stylesheet" href="{% static 'products/css/detail.css' %}">
+{% endblock %}
+
+{% block page_content %}
+<div class="product">
+    <h1 class="products__name">
+        {{ object.name|title }}
+    </h1>
+    <span class="products__description">
+        {{ object.description }}
+    </span>
+    <span class="products__cost">
+        {{ object.cost }}
+    </span>
+    <img src="../../media/{{ object.image }}" width=200 alt="">
+</div>
+{% endblock %}

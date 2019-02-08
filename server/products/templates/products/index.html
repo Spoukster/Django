@@ -1,52 +1,34 @@
-<!DOCTYPE html>
-<html>
+{% extends 'server/master.html' %}
 
-<head>
-    <meta charset="utf-8" />
-    <title>Catalog</title>
-    <link rel="stylesheet" type="text/css" media="screen" href="/static/products/css/index.css" />
-</head>
+{% load static %}
 
-<body>
-    <div class="page">
-        <header class="page__header">
-            <nav class="page__navigation">
-                <ul class="navigation-list">
-                    <li class="navigation-list__item">
-                        <span class="navigation-list__item-text">
-                            Главная
-                        </span>
-                        <a href="/" class="navigation-list__item-link">
-                        </a>
-                    </li>
-                    <li class="navigation-list__item">
-                        <span class="navigation-list__item-text">
-                            О проекте
-                        </span>
-                        <a href="/about" class="navigation-list__item-link">
-                        </a>
-                    </li>
-                    <li class="navigation-list__item">
-                        <span class="navigation-list__item-text">
-                            Контакты
-                        </span>
-                        <a href="/contacts" class="navigation-list__item-link">
-                        </a>
-                    </li>
-                </ul>
-            </nav>
-        </header>
-        <div class="page__content">
-            <h1 class="page__title">
-                Каталог
-            </h1>
-        </div>
-        <footer class="page__footer">
-            <span class="page__copyright">
-                © GeekBrains
-            </span>
-        </footer>
+{% block page_static %}
+<link rel="stylesheet" href="{% static 'products/css/list.css' %}">
+{% endblock %}
+
+{% block page_content %}
+<div class="products">
+    {% for object in object_list %}
+    <div class="products__item">
+        <span class="products__item-name">
+            {{ object.name|default:"По умолчанию"|title }}
+        </span>
+        <span class="products__item-description">
+            {{ object.description }}
+        </span>
+        {% if object.cost %}
+        <span class="products__item-cost">
+            {{ object.cost }}
+        </span>
+        {% else %}
+        <span class="products__item-cost_empty">
+            Значение отсутствует
+        </span>
+        {% endif %}
+        <a href="{% url 'detail' pk=object.id %}" class="products__item-link">
+            Ссылка на {{ object.name|lower }}
+        </a>
     </div>
-</body>
-
-</html>
+    {% endfor %}
+</div>
+{% endblock %}

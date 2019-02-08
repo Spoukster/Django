@@ -1,24 +1,32 @@
+{% load static %}
 <nav class="page__navigation">
     <ul class="navigation-list">
         <li class="navigation-list__item">
             <span class="navigation-list__item-text">
                 Главная
             </span>
-            <a href="/" class="navigation-list__item-link">
+            <a href="{% url 'main' %}" class="navigation-list__item-link">
+            </a>
+        </li>
+        <li class="navigation-list__item">
+            <span class="navigation-list__item-text">
+                Каталог
+            </span>
+            <a href="{% url 'list' %}" class="navigation-list__item-link">
             </a>
         </li>
         <li class="navigation-list__item">
             <span class="navigation-list__item-text">
                 О проекте
             </span>
-            <a href="/about" class="navigation-list__item-link">
+            <a href="{% url 'about' %}" class="navigation-list__item-link">
             </a>
         </li>
         <li class="navigation-list__item">
             <span class="navigation-list__item-text">
                 Контакты
             </span>
-            <a href="/contacts" class="navigation-list__item-link">
+            <a href="{% url 'contacts' %}" class="navigation-list__item-link">
             </a>
         </li>
     </ul>

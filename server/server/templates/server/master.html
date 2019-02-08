@@ -1,5 +1,4 @@
 {% load static %}
-{% load tz %}
 
 <!DOCTYPE html>
 <html>
@@ -8,12 +7,12 @@
     <meta charset="utf-8" />
     <title>
 
-        {% block page_title%}
+        {% block page_title %}
         {% endblock %}
 
     </title>
 
-    {% block page_static%}
+    {% block page_static %}
     {% endblock %}
 
     <link rel="stylesheet" type="text/css" media="screen" href="{% static 'server/css/master.css' %}" />
@@ -22,7 +21,7 @@
 <body>
     <div class="page">
         <header class="page__header">
-            {% include 'server/menu.html'%}
+            {% include 'server/menu.html' %}
         </header>
         <div class="page__content">
 
@@ -33,7 +32,6 @@
         <footer class="page__footer">
             <span class="page__copyright">
                 © GeekBrains
-                {% now 'SHORT_DATETIME_FORMAT' %}
             </span>
         </footer>
     </div>

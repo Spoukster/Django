@@ -1,0 +1,55 @@
+[
+  {
+    "model": "products.product",
+    "pk": 1,
+    "fields": {
+      "name": "avocado",
+      "description": "This is an avocado",
+      "cost": "100"
+    }
+
+  },
+  {
+    "model": "products.product",
+    "pk": 2,
+    "fields": {
+      "name": "Banana",
+      "description": "This is an banana",
+      "cost": "200"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 3,
+    "fields": {
+      "name": "onion",
+      "description": "This is an onion",
+      "cost": "300"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 4,
+    "fields": {
+      "name": "Potato",
+      "description": "This is an potato",
+      "cost": "400"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 5,
+    "fields": {
+      "name": "Persimmon",
+      "description": "This is an persimmon"
+    }
+  },
+  {
+    "model": "products.product",
+    "pk": 6,
+    "fields": {
+      "name": "Apple",
+      "description": "This is an apple"
+    }
+  }
+]
