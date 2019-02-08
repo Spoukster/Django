@@ -5,14 +5,23 @@
     {% for object in object_list %}
     <div class="products">
         <span class="products__item-name">
-            {{ object.name }}
+            {{ object.name|default:"По умолчанию"|title }}
         </span>
         <span class="products__item-description">
             {{ object.description }}
         </span>
+        {% if object.cost %}
         <span class="products__item-cost">
             {{ object.cost }}
         </span>
+        {% else %}
+        <span class="products__item-cost_empty">
+            Значение отсутствует
+        </span>
+        {% endif %}
+        <a href="{% url 'detail' pk=object.id %}" class="products__item-link">
+            Ссылка на {{ object.name|lower }}
+        </a>
     </div>
     {% endfor %}
 </div>
