@@ -25,7 +25,7 @@
             Значение отсутствует
         </span>
         {% endif %}
-        <a href="{% url 'detail' pk=object.id %}" class="products__item-link">
+        <a href="{% url 'products:detail' pk=object.id %}" class="products__item-link">
             Ссылка на {{ object.name|lower }}
         </a>
     </div>

@@ -3,7 +3,7 @@
 {% load static %}
 
 {% block page_title %}
-Update category
+Delete product
 {% endblock %}
 
 {% block page_static %}
@@ -11,6 +11,10 @@ Update category
 
 {% block page_content %}
 
-{% include 'server/form.html' with form=form %}
+<form method="POST">
+    {% csrf_token %}
+    <span>Запись о  {{ object }} будет удалена.</span>
+    <input type="submit">
+</form>
 
 {% endblock %}
