@@ -9,26 +9,10 @@
 {% block page_content %}
 <div class="products">
     {% for object in object_list %}
-    <div class="products__item">
-        <span class="products__item-name">
-            {{ object.name|default:"По умолчанию"|title }}
-        </span>
-        <span class="products__item-description">
-            {{ object.description }}
-        </span>
-        {% if object.cost %}
-        <span class="products__item-cost">
-            {{ object.cost }}
-        </span>
-        {% else %}
-        <span class="products__item-cost_empty">
-            Значение отсутствует
-        </span>
-        {% endif %}
-        <a href="{% url 'products:detail' pk=object.id %}" class="products__item-link">
-            Ссылка на {{ object.name|lower }}
-        </a>
-    </div>
+    {% include 'server/product.html' with id=object.pk image=object.image name=object.name description=object.description cost=object.cost %}
     {% endfor %}
 </div>
+
+{% include 'server/pagination.html' with page=page_obj page_range=paginator.page_range %}
+
 {% endblock %}
