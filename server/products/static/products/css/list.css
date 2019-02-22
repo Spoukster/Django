@@ -3,7 +3,6 @@
     grid-template-columns: repeat(auto-fit, minmax(172px, 1fr)) ;
     grid-gap: 16px;
     margin: 16px 0 0;
-
 }
 
 .products__item {
@@ -13,19 +12,31 @@
     padding: 4px 8px;
     border:2px solid #f76707;
     border-radius: 5px;
-    background-color: #fff4e6;
+}
+
+.products__item-image {
+    position: relative;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 16px;
+    top: 0;
+    left: 0;
+    object-fit: cover;
 }
 
 .products__item-name {
+    position: relative;
     font: 600 18px sans-serif;
 }
 
 .products__item-description {
+    position: relative;    
     margin-top: 8px;
     font: 400 16px sans-serif;
 }
 
 .products__item-cost {
+    position: relative;
     margin-top: 8px;
     font: 500 16px sans-serif;
     text-align: right
@@ -38,4 +49,8 @@
     top: 0;
     left: 0;
     opacity: 0;
+}
+
+.show-more-button_hidden {
+    display: none;
 }

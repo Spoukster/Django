@@ -1,0 +1,25 @@
+{% extends 'server/master.html' %}
+
+{% load static %}
+
+{% block page_static %}
+<link rel="stylesheet" href="{% static 'products/css/list.css' %}">
+{% endblock %}
+
+{% block page_content %}
+<div class="products">
+    {% for object in object_list %}
+    <div class="products__item">
+        <span class="products__item-name">
+            {{ object.name|default:"По умолчанию"|title }}
+        </span>
+        <span class="products__item-description">
+            {{ object.description }}
+        </span>
+        <a href="{% url 'categories:detail' pk=object.id %}" class="products__item-link">
+            Ссылка на {{ object.name|lower }}
+        </a>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
