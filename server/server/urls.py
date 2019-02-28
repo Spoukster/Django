@@ -18,13 +18,25 @@ from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 
-router = [
+from rest_framework.routers import DefaultRouter
+
+from products.viewset import (
+    CategoryViewSet, ProductViewSet
+)
+from products.views import product_list_view
+
+router = DefaultRouter()
+router.register('categories', CategoryViewSet)
+router.register('products', ProductViewSet)
+
+router_django = [
     path('products/', include('products.routes')),
     path('categories/', include('products.routes.categories')),
 ]
 
 urlpatterns = [
-    path('api/', include(router)),
+    path('api/', include(router.urls)),
+    path('django-api/', include(router_django)),
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('products/', include('products.urls')),
