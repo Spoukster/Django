@@ -40,7 +40,8 @@ INSTALLED_APPS = [
 
     'main',
     'products',
-    'accounts'
+    'accounts',
+    'pagination'
 ]
 
 AUTH_USER_MODEL = 'accounts.AccountUser'

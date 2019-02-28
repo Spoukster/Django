@@ -1,6 +1,7 @@
 {% extends 'server/master.html' %}
 
 {% load static %}
+{% load pagination %}
 
 {% block page_static %}
 <link rel="stylesheet" href="{% static 'products/css/detail.css' %}">
@@ -18,11 +19,14 @@
 </div>
 
 <div class="products">
-    {% for product in products %}
+    {% for product in object.product_set.all|paginate:"2" %}
     {% include 'server/product.html' with id=product.pk image=product.image name=product.name description=product.description cost=product.cost %}
     {% endfor %}
 </div>
 
-{% include 'server/pagination.html' with page=products page_range=products.paginator.page_range%}
+{% pagination object.product_set.all num=2 %}
+
+
+<!-- {% include 'server/pagination.html' with page=products page_range=products.paginator.page_range%} -->
 
 {% endblock %}
