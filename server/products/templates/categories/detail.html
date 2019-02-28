@@ -19,7 +19,7 @@
 </div>
 
 <div class="products">
-    {% for product in object.product_set.all|paginate:"2" %}
+    {% for product in object.product_set.all|paginate:request.GET.page %}
     {% include 'server/product.html' with id=product.pk image=product.image name=product.name description=product.description cost=product.cost %}
     {% endfor %}
 </div>

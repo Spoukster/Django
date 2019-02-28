@@ -1,6 +1,6 @@
 from django import template
 from django.core.paginator import Paginator
-from django.template.loader import render_to_string
+# from django.template.loader import render_to_string
 
 register = template.Library()
 
@@ -18,8 +18,8 @@ def render_pagination(context, value, num=10):
     }
 
 @register.filter(name='paginate')
-def paginate_value(value, page, num=2):
-    paginator = Paginator(value, num)
+def paginate_value(value, page):
+    paginator = Paginator(value, 2)
 
     return paginator.get_page(page)
     
