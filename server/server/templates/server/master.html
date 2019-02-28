@@ -24,6 +24,7 @@
             {% include 'server/menu.html' %}
         </header>
         <div class="page__content">
+            <ul class="categories"></ul>
 
             {% block page_content %}
             {% endblock %}
@@ -37,6 +38,32 @@
     </div>
     {% block page_js %}
     {% endblock %}
+    <script src="{% static 'server/js/categories.js' %}"></script>
+    <script>
+        const categories = document.querySelector('.categories');
+
+        const categoriesUrl = '{% url "rest_categories:list" %}';
+
+        const renderCategoryList = () => {
+            
+            fetch(categoriesUrl)
+                .then(response => response.json())
+                .then(
+                    data => (
+                        data.results.reduce(
+                            (val, itm, idx) => val += renderCategory(itm)
+                        )
+                    )
+                )
+                .then(
+                    renderedString => {
+                        categories.innerHTML = renderedString
+                    }
+                )
+        }
+        debugger;
+        document.addEventListener("DOMContentLoaded", renderCategoryList);
+    </script>
 </body>
 
 </html>

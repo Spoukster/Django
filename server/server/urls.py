@@ -20,6 +20,7 @@ from django.conf.urls.static import static
 
 router = [
     path('products/', include('products.routes')),
+    path('categories/', include('products.routes.categories')),
 ]
 
 urlpatterns = [

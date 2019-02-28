@@ -1,6 +1,11 @@
 import json
-from django.shortcuts import render, redirect, get_object_or_404
-
+from django.shortcuts import (
+    render, redirect, get_object_or_404
+)
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import (
+    LoginRequiredMixin, UserPassesTestMixin
+)
 from django.core.paginator import Paginator
 from django.urls import reverse, reverse_lazy
 from django.http import Http404, JsonResponse
@@ -15,7 +20,6 @@ from products.forms import ProductModelForm
 
 class RestProductListView(ListView):
     model = Product
-    template_name = 'products/index.html'
     paginate_by = 2
 
     def serialize_object_list(self, queryset):
@@ -82,13 +86,17 @@ class ProductDetailView(DetailView):
     template_name = 'products/detail.html'
     context_object_name = 'inst'
 
-class ProductCreateView(CreateView):
+class ProductCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Product
     form_class = ProductModelForm
     template_name = 'products/create.html'
     success_url = reverse_lazy('products:list')
+    login_url = reverse_lazy('accounts:login')
 
-class ProductUpdateView(UpdateView):
+    def test_func(self):
+        return self.request.user.has_perm('products.add_product')
+
+class ProductUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Product
     fields = [
         'name', 'image', 'category',
@@ -96,11 +104,19 @@ class ProductUpdateView(UpdateView):
     ]
     template_name = 'products/update.html'
     success_url = reverse_lazy('products:list')
+    login_url = reverse_lazy('accounts:login')
 
-class ProductDeleteView(DeleteView):
+    def test_func(self):
+        return self.request.user.has_perm('products.change_product')
+
+class ProductDeleteView(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     model = Product
     template_name = 'products/delete.html'
     success_url = reverse_lazy('products:list')
+    login_url = reverse_lazy('accounts:login')
+
+    def test_func(self):
+        return self.request.user.is_superuser
 
 def product_list_view(request):
     # with open('products/fixtures/data/data.json') as file:
@@ -125,7 +141,7 @@ def product_detail_view(request, pk):
         # {'object': data[idx]}
     )
 
-
+@login_required(login_url=reverse_lazy('accounts:login'))
 def product_create_view(request):
     form = ProductModelForm()
     success_url = reverse('products:list')
@@ -144,7 +160,7 @@ def product_create_view(request):
         {'form': form}
     )
 
-
+@login_required(login_url=reverse_lazy('accounts:login'))
 def product_update_view(request, pk):
     # try:
     #     obj = Product.objects.get(pk=pk)
@@ -173,7 +189,7 @@ def product_update_view(request, pk):
         {'form': form}
     )
 
-
+@login_required(login_url=reverse_lazy('accounts:login'))
 def product_delete_view(request, pk):
     obj = get_object_or_404(Product, pk=pk)
     success_url = reverse('products:list')
