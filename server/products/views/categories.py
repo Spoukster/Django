@@ -49,20 +49,20 @@ class CategoryDetailView(DetailView):
     model = Category
     template_name = 'categories/detail.html'
 
-    def get_context_data(self, **kwargs):
-        key = self.context_object_name if self.context_object_name else 'object'
-        obj = kwargs.get(key)
-        products = obj.product_set.all()
-        page = self.request.GET.get('page')
+    #def get_context_data(self, **kwargs):
+    #    key = self.context_object_name if self.context_object_name else 'object'
+    #    obj = kwargs.get(key)
+    #    products = obj.product_set.all()
+    #    page = self.request.GET.get('page')
 
-        paginator = Paginator(products, 2)
+    #    paginator = Paginator(products, 2)
 
-        page_obj = paginator.get_page(page)
+    #    page_obj = paginator.get_page(page)
 
-        return {
-            key: obj,
-            'products': page_obj
-        }
+    #    return {
+    #        key: obj,
+    #        'products': page_obj
+    #    }
 
 class CategoryCreateView(CreateView):
     model = Category
